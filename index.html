@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PowerMagnetProgram - Master Art of Binanme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="auth-root" class="auth-root">
+    <section class="auth-shell" aria-label="Authentication">
+      <div class="auth-brand-panel">
+        <p class="eyebrow">PowerMagnetProgram</p>
+        <h1>Master Art of Binanme</h1>
+        <p class="brand-copy">Sign in to unlock the dashboard, funnel, binary tools, and offline assistant from one control center.</p>
+        <div class="auth-highlight-grid">
+          <article class="auth-highlight-card">
+            <p class="eyebrow">Secure Access</p>
+            <p class="auth-highlight-copy">Create an account and keep your session on this browser.</p>
+          </article>
+          <article class="auth-highlight-card">
+            <p class="eyebrow">Offline Friendly</p>
+            <p class="auth-highlight-copy">Registration and login work locally with browser storage, so you can demo the app without a backend.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="auth-card">
+        <div class="auth-card-header">
+          <p class="eyebrow">Access Portal</p>
+          <h2>Login or Create an Account</h2>
+          <p class="page-copy">Use your details to enter the program. New here? Register once, then log in any time on this browser.</p>
+        </div>
+
+        <div class="auth-tab-row" role="tablist" aria-label="Authentication tabs">
+          <button id="tab-login" class="auth-tab is-active" type="button" data-auth-mode="login" role="tab" aria-selected="true">Login</button>
+          <button id="tab-register" class="auth-tab" type="button" data-auth-mode="register" role="tab" aria-selected="false">Register</button>
+        </div>
+
+        <form id="login-form" class="auth-form" novalidate>
+          <label class="field-label" for="login-email">Email</label>
+          <input id="login-email" class="text-input" type="email" autocomplete="email" placeholder="you@example.com" required>
+
+          <label class="field-label" for="login-password">Password</label>
+          <input id="login-password" class="text-input" type="password" autocomplete="current-password" placeholder="Enter your password" required>
+
+          <button class="primary-button auth-submit" type="submit">Login</button>
+        </form>
+
+        <form id="register-form" class="auth-form hidden" novalidate>
+          <label class="field-label" for="register-name">Full Name</label>
+          <input id="register-name" class="text-input" type="text" autocomplete="name" placeholder="Your full name" required>
+
+          <label class="field-label" for="register-email">Email</label>
+          <input id="register-email" class="text-input" type="email" autocomplete="email" placeholder="you@example.com" required>
+
+          <label class="field-label" for="register-password">Password</label>
+          <input id="register-password" class="text-input" type="password" autocomplete="new-password" placeholder="Create a password" required>
+
+          <label class="field-label" for="register-confirm-password">Confirm Password</label>
+          <input id="register-confirm-password" class="text-input" type="password" autocomplete="new-password" placeholder="Repeat your password" required>
+
+          <button class="primary-button auth-submit" type="submit">Create Account</button>
+        </form>
+
+        <p id="auth-feedback" class="auth-feedback" aria-live="polite"></p>
+        <p class="auth-note">This authentication system stores accounts locally in your browser for this project.</p>
+      </div>
+    </section>
+  </div>
+
+  <div id="app-shell" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <p class="eyebrow">PowerMagnetProgram</p>
+        <h1>Master Art of Binanme</h1>
+        <p class="brand-copy">A browser recreation of the original Tkinter control center.</p>
+      </div>
+
+      <nav class="nav-list" aria-label="Primary">
+        <button class="nav-button is-active" data-page="Dashboard">Dashboard</button>
+        <button class="nav-button" data-page="Magnet Funnel">Magnet Funnel</button>
+        <button class="nav-button" data-page="PowerMagnet">PowerMagnet</button>
+        <button class="nav-button" data-page="Binary Visualizer">Binary Visualizer</button>
+        <button class="nav-button" data-page="Community Chat">
+          <span>Community Chat</span>
+          <span id="community-chat-badge" class="nav-badge hidden"></span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-card">
+          <p class="eyebrow">Signed In</p>
+          <strong id="sidebar-user-name">Guest User</strong>
+          <p id="sidebar-user-email" class="muted">Sign in to access the tools.</p>
+          <p id="sidebar-notification-copy" class="muted hidden"></p>
+        </div>
+
+        <div id="sidebar-scoreboard" class="score-card hidden"></div>
+
+        <div class="sidebar-actions">
+          <button id="toggle-theme" class="theme-button" type="button">Toggle Theme</button>
+          <button id="logout-button" class="ghost-button logout-button hidden" type="button">Log Out</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-panel">
+      <header class="panel-header">
+        <div>
+          <p class="eyebrow">Control Center</p>
+          <h2>PowerMagnetProgram</h2>
+        </div>
+        <div class="panel-meta">
+          <p class="panel-copy">Dashboard, funnel, visualizer, chat, and binary learning tools in one static web app.</p>
+          <span id="header-session-chip" class="status-chip hidden"></span>
+          <span id="header-alert-chip" class="status-chip hidden"></span>
+        </div>
+      </header>
+
+      <section id="content-region" class="content-region" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <div id="modal-root" class="modal-root hidden" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-header">
+        <h3 id="modal-title">Modal</h3>
+        <button id="modal-close" class="icon-button" type="button" aria-label="Close modal">x</button>
+      </div>
+      <div id="modal-body" class="modal-body"></div>
+      <div id="modal-actions" class="modal-actions"></div>
+    </div>
+  </div>
+
+  <div id="toast-root" class="toast-root" aria-live="assertive" aria-atomic="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
